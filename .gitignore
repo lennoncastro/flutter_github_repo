@@ -32,6 +32,7 @@ migrate_working_dir/
 /build/
 *.lock
 *.g.dart
+*.freezed.dart
 coverage/
 
 # Symbolication related

@@ -1,3 +1,3 @@
-class RequestError implements Exception {
+final class RequestError implements Exception {
   const RequestError();
 }

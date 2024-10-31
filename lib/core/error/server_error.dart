@@ -1,3 +1,3 @@
-class ServerError implements Exception {
+final class ServerError implements Exception {
   const ServerError();
 }

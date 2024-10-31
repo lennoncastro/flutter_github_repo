@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:github_repos/features/search/data/models/git_hub_repo_model.dart';
+import 'package:github_repos/features/search/data/responses/git_hub_repo_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -14,6 +14,6 @@ abstract class GitHubRepoRestService {
   factory GitHubRepoRestService(Dio dio, {String? baseUrl}) =
       _GitHubRepoRestService;
 
-  @GET('/search/repositories?q=language:Java&sort=stars&page=1')
-  Future<GitHubRepoResponse> getRepositories();
+  @GET('/search/repositories?q=language:{name}&sort=stars&page=1')
+  Future<GitHubRepoResponse> getRepositories(@Path('name') String name);
 }

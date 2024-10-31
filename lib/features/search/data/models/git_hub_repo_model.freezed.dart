@@ -14,185 +14,21 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-GitHubRepoResponse _$GitHubRepoResponseFromJson(Map<String, dynamic> json) {
-  return _GitHubRepoResponseImpl.fromJson(json);
-}
-
-/// @nodoc
-mixin _$GitHubRepoResponse {
-  List<GitHubRepo>? get items => throw _privateConstructorUsedError;
-
-  /// Serializes this GitHubRepoResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of GitHubRepoResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $GitHubRepoResponseCopyWith<GitHubRepoResponse> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $GitHubRepoResponseCopyWith<$Res> {
-  factory $GitHubRepoResponseCopyWith(
-          GitHubRepoResponse value, $Res Function(GitHubRepoResponse) then) =
-      _$GitHubRepoResponseCopyWithImpl<$Res, GitHubRepoResponse>;
-  @useResult
-  $Res call({List<GitHubRepo>? items});
-}
-
-/// @nodoc
-class _$GitHubRepoResponseCopyWithImpl<$Res, $Val extends GitHubRepoResponse>
-    implements $GitHubRepoResponseCopyWith<$Res> {
-  _$GitHubRepoResponseCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of GitHubRepoResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? items = freezed,
-  }) {
-    return _then(_value.copyWith(
-      items: freezed == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<GitHubRepo>?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$GitHubRepoResponseImplImplCopyWith<$Res>
-    implements $GitHubRepoResponseCopyWith<$Res> {
-  factory _$$GitHubRepoResponseImplImplCopyWith(
-          _$GitHubRepoResponseImplImpl value,
-          $Res Function(_$GitHubRepoResponseImplImpl) then) =
-      __$$GitHubRepoResponseImplImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<GitHubRepo>? items});
-}
-
-/// @nodoc
-class __$$GitHubRepoResponseImplImplCopyWithImpl<$Res>
-    extends _$GitHubRepoResponseCopyWithImpl<$Res, _$GitHubRepoResponseImplImpl>
-    implements _$$GitHubRepoResponseImplImplCopyWith<$Res> {
-  __$$GitHubRepoResponseImplImplCopyWithImpl(
-      _$GitHubRepoResponseImplImpl _value,
-      $Res Function(_$GitHubRepoResponseImplImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of GitHubRepoResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? items = freezed,
-  }) {
-    return _then(_$GitHubRepoResponseImplImpl(
-      items: freezed == items
-          ? _value._items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<GitHubRepo>?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$GitHubRepoResponseImplImpl implements _GitHubRepoResponseImpl {
-  const _$GitHubRepoResponseImplImpl(
-      {final List<GitHubRepo>? items = const <GitHubRepo>[]})
-      : _items = items;
-
-  factory _$GitHubRepoResponseImplImpl.fromJson(Map<String, dynamic> json) =>
-      _$$GitHubRepoResponseImplImplFromJson(json);
-
-  final List<GitHubRepo>? _items;
-  @override
-  @JsonKey()
-  List<GitHubRepo>? get items {
-    final value = _items;
-    if (value == null) return null;
-    if (_items is EqualUnmodifiableListView) return _items;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'GitHubRepoResponse(items: $items)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GitHubRepoResponseImplImpl &&
-            const DeepCollectionEquality().equals(other._items, _items));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_items));
-
-  /// Create a copy of GitHubRepoResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GitHubRepoResponseImplImplCopyWith<_$GitHubRepoResponseImplImpl>
-      get copyWith => __$$GitHubRepoResponseImplImplCopyWithImpl<
-          _$GitHubRepoResponseImplImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$GitHubRepoResponseImplImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _GitHubRepoResponseImpl implements GitHubRepoResponse {
-  const factory _GitHubRepoResponseImpl({final List<GitHubRepo>? items}) =
-      _$GitHubRepoResponseImplImpl;
-
-  factory _GitHubRepoResponseImpl.fromJson(Map<String, dynamic> json) =
-      _$GitHubRepoResponseImplImpl.fromJson;
-
-  @override
-  List<GitHubRepo>? get items;
-
-  /// Create a copy of GitHubRepoResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GitHubRepoResponseImplImplCopyWith<_$GitHubRepoResponseImplImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
 GitHubRepo _$GitHubRepoFromJson(Map<String, dynamic> json) {
   return _GitHubRepoImpl.fromJson(json);
 }
 
 /// @nodoc
 mixin _$GitHubRepo {
-  int? get id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  String? get url => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
   @JsonKey(name: "stargazers_count")
-  int? get stargazersCount => throw _privateConstructorUsedError;
+  int get stargazersCount => throw _privateConstructorUsedError;
   @JsonKey(name: "watchers_count")
-  int? get watchersCount => throw _privateConstructorUsedError;
-  GitHubRepoOwner? get owner => throw _privateConstructorUsedError;
+  int get watchersCount => throw _privateConstructorUsedError;
+  GitHubRepoOwner get owner => throw _privateConstructorUsedError;
 
   /// Serializes this GitHubRepo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -211,15 +47,15 @@ abstract class $GitHubRepoCopyWith<$Res> {
       _$GitHubRepoCopyWithImpl<$Res, GitHubRepo>;
   @useResult
   $Res call(
-      {int? id,
-      String? name,
-      String? description,
-      String? url,
-      @JsonKey(name: "stargazers_count") int? stargazersCount,
-      @JsonKey(name: "watchers_count") int? watchersCount,
-      GitHubRepoOwner? owner});
+      {int id,
+      String name,
+      String description,
+      String url,
+      @JsonKey(name: "stargazers_count") int stargazersCount,
+      @JsonKey(name: "watchers_count") int watchersCount,
+      GitHubRepoOwner owner});
 
-  $GitHubRepoOwnerCopyWith<$Res>? get owner;
+  $GitHubRepoOwnerCopyWith<$Res> get owner;
 }
 
 /// @nodoc
@@ -237,43 +73,43 @@ class _$GitHubRepoCopyWithImpl<$Res, $Val extends GitHubRepo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? description = freezed,
-    Object? url = freezed,
-    Object? stargazersCount = freezed,
-    Object? watchersCount = freezed,
-    Object? owner = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? description = null,
+    Object? url = null,
+    Object? stargazersCount = null,
+    Object? watchersCount = null,
+    Object? owner = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
+              as int,
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
+              as String,
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      url: freezed == url
+              as String,
+      url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      stargazersCount: freezed == stargazersCount
+              as String,
+      stargazersCount: null == stargazersCount
           ? _value.stargazersCount
           : stargazersCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      watchersCount: freezed == watchersCount
+              as int,
+      watchersCount: null == watchersCount
           ? _value.watchersCount
           : watchersCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      owner: freezed == owner
+              as int,
+      owner: null == owner
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
-              as GitHubRepoOwner?,
+              as GitHubRepoOwner,
     ) as $Val);
   }
 
@@ -281,12 +117,8 @@ class _$GitHubRepoCopyWithImpl<$Res, $Val extends GitHubRepo>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $GitHubRepoOwnerCopyWith<$Res>? get owner {
-    if (_value.owner == null) {
-      return null;
-    }
-
-    return $GitHubRepoOwnerCopyWith<$Res>(_value.owner!, (value) {
+  $GitHubRepoOwnerCopyWith<$Res> get owner {
+    return $GitHubRepoOwnerCopyWith<$Res>(_value.owner, (value) {
       return _then(_value.copyWith(owner: value) as $Val);
     });
   }
@@ -301,16 +133,16 @@ abstract class _$$GitHubRepoImplImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
-      String? name,
-      String? description,
-      String? url,
-      @JsonKey(name: "stargazers_count") int? stargazersCount,
-      @JsonKey(name: "watchers_count") int? watchersCount,
-      GitHubRepoOwner? owner});
+      {int id,
+      String name,
+      String description,
+      String url,
+      @JsonKey(name: "stargazers_count") int stargazersCount,
+      @JsonKey(name: "watchers_count") int watchersCount,
+      GitHubRepoOwner owner});
 
   @override
-  $GitHubRepoOwnerCopyWith<$Res>? get owner;
+  $GitHubRepoOwnerCopyWith<$Res> get owner;
 }
 
 /// @nodoc
@@ -326,43 +158,43 @@ class __$$GitHubRepoImplImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? description = freezed,
-    Object? url = freezed,
-    Object? stargazersCount = freezed,
-    Object? watchersCount = freezed,
-    Object? owner = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? description = null,
+    Object? url = null,
+    Object? stargazersCount = null,
+    Object? watchersCount = null,
+    Object? owner = null,
   }) {
     return _then(_$GitHubRepoImplImpl(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
+              as int,
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
+              as String,
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      url: freezed == url
+              as String,
+      url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      stargazersCount: freezed == stargazersCount
+              as String,
+      stargazersCount: null == stargazersCount
           ? _value.stargazersCount
           : stargazersCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      watchersCount: freezed == watchersCount
+              as int,
+      watchersCount: null == watchersCount
           ? _value.watchersCount
           : watchersCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      owner: freezed == owner
+              as int,
+      owner: null == owner
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
-              as GitHubRepoOwner?,
+              as GitHubRepoOwner,
     ));
   }
 }
@@ -384,25 +216,25 @@ class _$GitHubRepoImplImpl implements _GitHubRepoImpl {
 
   @override
   @JsonKey()
-  final int? id;
+  final int id;
   @override
   @JsonKey()
-  final String? name;
+  final String name;
   @override
   @JsonKey()
-  final String? description;
+  final String description;
   @override
   @JsonKey()
-  final String? url;
+  final String url;
   @override
   @JsonKey(name: "stargazers_count")
-  final int? stargazersCount;
+  final int stargazersCount;
   @override
   @JsonKey(name: "watchers_count")
-  final int? watchersCount;
+  final int watchersCount;
   @override
   @JsonKey()
-  final GitHubRepoOwner? owner;
+  final GitHubRepoOwner owner;
 
   @override
   String toString() {
@@ -450,33 +282,33 @@ class _$GitHubRepoImplImpl implements _GitHubRepoImpl {
 
 abstract class _GitHubRepoImpl implements GitHubRepo {
   const factory _GitHubRepoImpl(
-      {final int? id,
-      final String? name,
-      final String? description,
-      final String? url,
-      @JsonKey(name: "stargazers_count") final int? stargazersCount,
-      @JsonKey(name: "watchers_count") final int? watchersCount,
-      final GitHubRepoOwner? owner}) = _$GitHubRepoImplImpl;
+      {final int id,
+      final String name,
+      final String description,
+      final String url,
+      @JsonKey(name: "stargazers_count") final int stargazersCount,
+      @JsonKey(name: "watchers_count") final int watchersCount,
+      final GitHubRepoOwner owner}) = _$GitHubRepoImplImpl;
 
   factory _GitHubRepoImpl.fromJson(Map<String, dynamic> json) =
       _$GitHubRepoImplImpl.fromJson;
 
   @override
-  int? get id;
+  int get id;
   @override
-  String? get name;
+  String get name;
   @override
-  String? get description;
+  String get description;
   @override
-  String? get url;
+  String get url;
   @override
   @JsonKey(name: "stargazers_count")
-  int? get stargazersCount;
+  int get stargazersCount;
   @override
   @JsonKey(name: "watchers_count")
-  int? get watchersCount;
+  int get watchersCount;
   @override
-  GitHubRepoOwner? get owner;
+  GitHubRepoOwner get owner;
 
   /// Create a copy of GitHubRepo
   /// with the given fields replaced by the non-null parameter values.
@@ -492,9 +324,9 @@ GitHubRepoOwner _$GitHubRepoOwnerFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GitHubRepoOwner {
-  String? get login => throw _privateConstructorUsedError;
+  String get login => throw _privateConstructorUsedError;
   @JsonKey(name: "avatar_url")
-  String? get avatarUrl => throw _privateConstructorUsedError;
+  String get avatarUrl => throw _privateConstructorUsedError;
 
   /// Serializes this GitHubRepoOwner to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -512,7 +344,7 @@ abstract class $GitHubRepoOwnerCopyWith<$Res> {
           GitHubRepoOwner value, $Res Function(GitHubRepoOwner) then) =
       _$GitHubRepoOwnerCopyWithImpl<$Res, GitHubRepoOwner>;
   @useResult
-  $Res call({String? login, @JsonKey(name: "avatar_url") String? avatarUrl});
+  $Res call({String login, @JsonKey(name: "avatar_url") String avatarUrl});
 }
 
 /// @nodoc
@@ -530,18 +362,18 @@ class _$GitHubRepoOwnerCopyWithImpl<$Res, $Val extends GitHubRepoOwner>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? login = freezed,
-    Object? avatarUrl = freezed,
+    Object? login = null,
+    Object? avatarUrl = null,
   }) {
     return _then(_value.copyWith(
-      login: freezed == login
+      login: null == login
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
-              as String?,
-      avatarUrl: freezed == avatarUrl
+              as String,
+      avatarUrl: null == avatarUrl
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -554,7 +386,7 @@ abstract class _$$GitHubRepoOwnerImplCopyWith<$Res>
       __$$GitHubRepoOwnerImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? login, @JsonKey(name: "avatar_url") String? avatarUrl});
+  $Res call({String login, @JsonKey(name: "avatar_url") String avatarUrl});
 }
 
 /// @nodoc
@@ -570,18 +402,18 @@ class __$$GitHubRepoOwnerImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? login = freezed,
-    Object? avatarUrl = freezed,
+    Object? login = null,
+    Object? avatarUrl = null,
   }) {
     return _then(_$GitHubRepoOwnerImpl(
-      login: freezed == login
+      login: null == login
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
-              as String?,
-      avatarUrl: freezed == avatarUrl
+              as String,
+      avatarUrl: null == avatarUrl
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -597,10 +429,10 @@ class _$GitHubRepoOwnerImpl implements _GitHubRepoOwner {
 
   @override
   @JsonKey()
-  final String? login;
+  final String login;
   @override
   @JsonKey(name: "avatar_url")
-  final String? avatarUrl;
+  final String avatarUrl;
 
   @override
   String toString() {
@@ -640,18 +472,18 @@ class _$GitHubRepoOwnerImpl implements _GitHubRepoOwner {
 
 abstract class _GitHubRepoOwner implements GitHubRepoOwner {
   const factory _GitHubRepoOwner(
-          {final String? login,
-          @JsonKey(name: "avatar_url") final String? avatarUrl}) =
+          {final String login,
+          @JsonKey(name: "avatar_url") final String avatarUrl}) =
       _$GitHubRepoOwnerImpl;
 
   factory _GitHubRepoOwner.fromJson(Map<String, dynamic> json) =
       _$GitHubRepoOwnerImpl.fromJson;
 
   @override
-  String? get login;
+  String get login;
   @override
   @JsonKey(name: "avatar_url")
-  String? get avatarUrl;
+  String get avatarUrl;
 
   /// Create a copy of GitHubRepoOwner
   /// with the given fields replaced by the non-null parameter values.
