@@ -1,11 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:github_repos/features/search/data/models/git_hub_repo_model.dart';
+import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'git_hub_repo_service.g.dart';
 
-@RestApi(baseUrl: 'https://api.github.com/')
+@injectable
+@RestApi()
 abstract class GitHubRepoRestService {
+  @factoryMethod
+  static GitHubRepoRestService create(Dio dio) => GitHubRepoRestService(dio);
+
   factory GitHubRepoRestService(Dio dio, {String? baseUrl}) =
       _GitHubRepoRestService;
 

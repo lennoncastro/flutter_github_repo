@@ -17,6 +17,8 @@ dependencies:
   json_annotation: 4.9.0
   retrofit: 4.4.0
   logger: 2.4.0
+  injectable: 2.5.0
+  get_it: 8.0.0
 
 dev_dependencies:
   flutter_test:
@@ -27,7 +29,7 @@ dev_dependencies:
   freezed: 2.5.7
   json_serializable: 6.8.0
   retrofit_generator: '>=8.0.0 <10.0.0'
-  
+  injectable_generator: 2.6.2
 flutter:
 
   uses-material-design: true
