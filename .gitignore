@@ -33,6 +33,7 @@ migrate_working_dir/
 *.lock
 *.g.dart
 *.freezed.dart
+injection.config.dart
 coverage/
 
 # Symbolication related
