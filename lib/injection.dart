@@ -10,4 +10,7 @@ final getIt = GetIt.instance;
   preferRelativeImports: true,
   asExtension: true,
 )
-void configureDependencies() => getIt.init();
+void configureDependencies({bool isUnitTest = false}) {
+  getIt.init();
+  getIt.allowReassignment = isUnitTest;
+}

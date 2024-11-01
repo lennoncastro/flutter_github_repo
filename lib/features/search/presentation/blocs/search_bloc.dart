@@ -1,7 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:github_repos/core/error/request_error.dart';
-import 'package:github_repos/core/error/server_error.dart';
-import 'package:github_repos/core/error/unknown_error.dart';
+import 'package:github_repos/core/error/src.dart';
 import 'package:github_repos/features/search/domain/src.dart';
 import 'package:github_repos/features/search/presentation/blocs/search_event.dart';
 import 'package:github_repos/features/search/presentation/blocs/search_state.dart';

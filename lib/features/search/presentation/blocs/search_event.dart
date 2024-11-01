@@ -1,7 +1,8 @@
-sealed class SearchEvent {}
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-final class GetReposByName extends SearchEvent {
-  GetReposByName(this.name);
+part 'search_event.freezed.dart';
 
-  final String name;
+@freezed
+sealed class SearchEvent with _$SearchEvent {
+  const factory SearchEvent.getReposByName(String name) = GetReposByName;
 }

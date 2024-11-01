@@ -22,6 +22,7 @@ class SearchState with _$SearchState {
 
 extension SearchStateX on SearchState {
   bool get isLoading => status == SearchStatus.loading;
+  bool get isEmptyList => repos.isEmpty;
   bool get isSuccess => status == SearchStatus.success;
   bool get isRequestError => status == SearchStatus.requestError;
   bool get isServerError => status == SearchStatus.serverError;

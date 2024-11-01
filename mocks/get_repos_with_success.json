@@ -1,0 +1,19 @@
+{
+  "total_count": 16269071,
+  "incomplete_results": true,
+  "items": [
+    {
+      "id": 127988011,
+      "name": "mall",
+      "full_name": "macrozheng/mall",
+      "owner": {
+        "login": "macrozheng",
+        "html_url": "https://github.com/macrozheng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/15903809?v=4"
+      },
+      "description": "",
+      "stargazers_count": 77851,
+      "forks_count": 28803
+    }
+  ]
+}
