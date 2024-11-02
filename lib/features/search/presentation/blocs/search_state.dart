@@ -8,6 +8,7 @@ enum SearchStatus {
   loading,
   success,
   requestError,
+  noResultsFound,
   serverError,
   unknownError
 }
@@ -27,4 +28,5 @@ extension SearchStateX on SearchState {
   bool get isRequestError => status == SearchStatus.requestError;
   bool get isServerError => status == SearchStatus.serverError;
   bool get isUnknownError => status == SearchStatus.unknownError;
+  bool get noResultsFound => status == SearchStatus.noResultsFound;
 }

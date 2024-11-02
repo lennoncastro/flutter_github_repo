@@ -17,6 +17,7 @@ class SearchAppBar extends StatelessWidget {
         title: Container(
           padding: const EdgeInsets.all(8.0),
           child: TextField(
+            key: Key('search_text_field'),
             controller: searchController,
             onEditingComplete: () {
               onEditingComplete(searchController.text);
