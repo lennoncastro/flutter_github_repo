@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:github_repos/core/theme/theme.dart';
+import 'package:github_repos/core/theme/src.dart';
 import 'package:github_repos/features/search/presentation/blocs/src.dart';
 import 'package:github_repos/features/search/presentation/pages/src.dart';
 import 'package:github_repos/injection.dart';

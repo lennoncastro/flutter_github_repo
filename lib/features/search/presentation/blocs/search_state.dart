@@ -17,6 +17,8 @@ enum SearchStatus {
 class SearchState with _$SearchState {
   const factory SearchState({
     @Default(SearchStatus.initial) SearchStatus status,
+    @Default(1) int page,
+    @Default('') String search,
     @Default(<GitHubRepo>[]) List<GitHubRepo> repos,
   }) = _SearchState;
 }

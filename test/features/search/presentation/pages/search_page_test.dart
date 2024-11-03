@@ -67,7 +67,7 @@ void main() {
 
     // assert
     expect(find.byType(SearchPage), findsOneWidget);
-    expect(find.text('Request Error'), findsOneWidget);
+    expect(find.text('Erro de requisição'), findsOneWidget);
   });
 
   testWidgets('Should display server error', (WidgetTester tester) async {
@@ -95,7 +95,7 @@ void main() {
 
     // assert
     expect(find.byType(SearchPage), findsOneWidget);
-    expect(find.text('Server Error'), findsOneWidget);
+    expect(find.text('Erro no servidor'), findsOneWidget);
   });
 
   testWidgets('Should display unknown error', (WidgetTester tester) async {
@@ -123,7 +123,7 @@ void main() {
 
     // assert
     expect(find.byType(SearchPage), findsOneWidget);
-    expect(find.text('Unknown Error'), findsOneWidget);
+    expect(find.text('Erro desconhecido'), findsOneWidget);
   });
 
   testWidgets('Should display no results found error',
@@ -152,6 +152,6 @@ void main() {
 
     // assert
     expect(find.byType(SearchPage), findsOneWidget);
-    expect(find.text('No results found'), findsOneWidget);
+    expect(find.text('Nenhum resultado encontrado'), findsOneWidget);
   });
 }

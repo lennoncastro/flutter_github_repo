@@ -1,0 +1,7 @@
+textField:
+  search: Search...
+error:
+  noResultsFound: "Nenhum resultado encontrado"
+  requestError: "Erro de requisição"
+  serverError: "Erro do servidor"
+  unknownError: "Erro desconhecido"

@@ -14,7 +14,8 @@ final class GetGitHubReposByName {
 
   Future<List<GitHubRepo>> call(String name, int page) async {
     try {
-      return await _gitHubRepoRepository.getRepositories(name, page);
+      final repos = await _gitHubRepoRepository.getRepositories(name, page);
+      return repos.where((GitHubRepo repo) => repo.name.isNotEmpty).toList();
     } on RequestError catch (error) {
       if (_emptyResultStatusCodes.contains(error.statusCode)) {
         throw NoResultsFound();

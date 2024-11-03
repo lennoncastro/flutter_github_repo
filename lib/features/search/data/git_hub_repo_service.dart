@@ -7,7 +7,7 @@ part 'git_hub_repo_service.g.dart';
 
 @injectable
 @RestApi()
-abstract class GitHubRepoRestService {
+abstract interface class GitHubRepoRestService {
   @factoryMethod
   static GitHubRepoRestService create(Dio dio) => GitHubRepoRestService(dio);
 
