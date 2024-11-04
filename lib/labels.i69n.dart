@@ -78,7 +78,7 @@ class ErrorLabels implements i69n.I69nMessageBundle {
   const ErrorLabels(this._parent);
   String get noResultsFound => "Nenhum resultado encontrado";
   String get requestError => "Erro de requisição";
-  String get serverError => "Erro no servidor";
+  String get serverError => "Erro do servidor";
   String get unknownError => "Erro desconhecido";
   Object operator [](String key) {
     var index = key.indexOf('.');

@@ -95,7 +95,7 @@ void main() {
 
     // assert
     expect(find.byType(SearchPage), findsOneWidget);
-    expect(find.text('Erro no servidor'), findsOneWidget);
+    expect(find.text('Erro do servidor'), findsOneWidget);
   });
 
   testWidgets('Should display unknown error', (WidgetTester tester) async {
