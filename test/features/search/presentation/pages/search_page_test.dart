@@ -24,7 +24,7 @@ void main() {
 
   testWidgets('Should initialize correctly', (WidgetTester tester) async {
     // arrange
-    when(() => _service.getRepositories(any(), any())).thenAnswer((_) async {
+    when(() => _service.getRepositories(any(), any(), any())).thenAnswer((_) async {
       final json = await loadJson('mocks/get_repos_with_success.json');
       return GitHubRepoResponse.fromJson(json);
     });
@@ -55,7 +55,7 @@ void main() {
       type: DioExceptionType.badResponse,
       error: 'Request cancelled',
     );
-    when(() => _service.getRepositories(any(), any())).thenThrow(dioException);
+    when(() => _service.getRepositories(any(), any(), any())).thenThrow(dioException);
     await tester.pumpWidget(App());
     await tester.pump();
 
@@ -83,7 +83,7 @@ void main() {
       type: DioExceptionType.badResponse,
       error: 'Server error',
     );
-    when(() => _service.getRepositories(any(), any())).thenThrow(dioException);
+    when(() => _service.getRepositories(any(), any(), any())).thenThrow(dioException);
     await tester.pumpWidget(App());
     await tester.pump();
 
@@ -111,7 +111,7 @@ void main() {
       type: DioExceptionType.unknown,
       error: 'Unknown error',
     );
-    when(() => _service.getRepositories(any(), any())).thenThrow(dioException);
+    when(() => _service.getRepositories(any(), any(), any())).thenThrow(dioException);
     await tester.pumpWidget(App());
     await tester.pump();
 
@@ -140,7 +140,7 @@ void main() {
       type: DioExceptionType.badResponse,
       error: 'Request cancelled',
     );
-    when(() => _service.getRepositories(any(), any())).thenThrow(dioException);
+    when(() => _service.getRepositories(any(), any(), any())).thenThrow(dioException);
     await tester.pumpWidget(App());
     await tester.pump();
 
