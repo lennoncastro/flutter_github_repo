@@ -14,9 +14,10 @@ abstract interface class GitHubRepoRestService {
   factory GitHubRepoRestService(Dio dio, {String? baseUrl}) =
       _GitHubRepoRestService;
 
-  @GET('/search/repositories?q=language:{name}&sort=stars&page={page}')
+  @GET('/search/repositories')
   Future<GitHubRepoResponse> getRepositories(
-    @Path('name') String name,
-    @Path('page') int page,
+    @Query('q') String query,
+    @Query('page') int page,
+    @Query('sort') String sort,
   );
 }

@@ -33,7 +33,12 @@ final class SearchBloc extends Bloc<SearchEvent, SearchState> {
           page: 1,
         ),
       );
-      final repos = await getGitHubReposByName(event.name, state.page);
+      final query = 'language:${event.name}';
+      final repos = await getGitHubReposByName(
+        query: query,
+        page: state.page,
+        sort: 'stars',
+      );
       emit(
         state.copyWith(
           status: SearchStatus.success,
@@ -61,7 +66,12 @@ final class SearchBloc extends Bloc<SearchEvent, SearchState> {
         return;
       }
       emit(state.copyWith(status: SearchStatus.loading));
-      final repos = await getGitHubReposByName(state.search, state.page);
+      final query = 'language:${state.search}';
+      final repos = await getGitHubReposByName(
+        query: query,
+        page: state.page,
+        sort: 'stars',
+      );
       emit(
         state.copyWith(
           status: SearchStatus.success,

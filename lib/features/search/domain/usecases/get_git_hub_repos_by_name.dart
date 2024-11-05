@@ -12,9 +12,17 @@ final class GetGitHubReposByName {
 
   final List<int> _emptyResultStatusCodes = <int>[404, 422];
 
-  Future<List<GitHubRepo>> call(String name, int page) async {
+  Future<List<GitHubRepo>> call({
+    required String query,
+    required int page,
+    required String sort,
+  }) async {
     try {
-      final repos = await _gitHubRepoRepository.getRepositories(name, page);
+      final repos = await _gitHubRepoRepository.getRepositories(
+        query: query,
+        page: page,
+        sort: sort,
+      );
       return repos.where((GitHubRepo repo) => repo.name.isNotEmpty).toList();
     } on RequestError catch (error) {
       if (_emptyResultStatusCodes.contains(error.statusCode)) {

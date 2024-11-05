@@ -13,9 +13,17 @@ class GitHubRepoRepositoryImpl implements GitHubRepoRepository {
   final GitHubRepoRestService _service;
 
   @override
-  Future<List<GitHubRepo>> getRepositories(String name, int page) async {
+  Future<List<GitHubRepo>> getRepositories({
+    required String query,
+    required int page,
+    required String sort,
+  }) async {
     try {
-      final repositoryResponse = await _service.getRepositories(name, page);
+      final repositoryResponse = await _service.getRepositories(
+        query,
+        page,
+        sort,
+      );
       return List<GitHubRepo>.from(repositoryResponse.items);
     } on DioException catch (e) {
       throw e.asApplicationException;
