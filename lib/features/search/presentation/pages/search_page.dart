@@ -67,15 +67,11 @@ class _SearchPageState extends State<SearchPage> {
           builder: (BuildContext context, SearchState state) {
             return Visibility(
               visible: state.isLoading,
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    color: Colors.black.withOpacity(0.5),
-                  ),
-                  Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ],
+              child: Container(
+                color: Colors.black.withOpacity(0.5),
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
               ),
             );
           },
