@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:github_repos/features/search/data/src.dart';
+import 'package:github_repos/labels.i69n.dart';
 
 part 'search_state.freezed.dart';
 
@@ -31,4 +32,20 @@ extension SearchStateX on SearchState {
   bool get isServerError => status == SearchStatus.serverError;
   bool get isUnknownError => status == SearchStatus.unknownError;
   bool get noResultsFound => status == SearchStatus.noResultsFound;
+  bool get isError {
+    return isRequestError || isServerError || isUnknownError || noResultsFound;
+  }
+
+  String get errorMessage {
+    if (isRequestError) {
+      return Labels().error.requestError;
+    } else if (isServerError) {
+      return Labels().error.serverError;
+    } else if (isUnknownError) {
+      return Labels().error.unknownError;
+    } else if (noResultsFound) {
+      return Labels().error.noResultsFound;
+    }
+    return '';
+  }
 }

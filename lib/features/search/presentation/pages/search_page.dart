@@ -1,9 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_repos/core/extensions/scroll_position_extension.dart';
 import 'package:github_repos/features/search/presentation/blocs/src.dart';
 import 'package:github_repos/features/search/presentation/components/src.dart';
-import 'package:github_repos/labels.i69n.dart';
 
 final class SearchPage extends StatefulWidget {
   @override
@@ -13,6 +14,8 @@ final class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final ScrollController _scrollController = ScrollController();
 
+  Timer? _debounce = null;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -20,13 +23,20 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   void _handleScrollingDown() {
-    if (_scrollController.position.isScrollingDown) {
-      context.read<SearchBloc>().add(GetMoreRepos());
+    if (_debounce?.isActive ?? false) {
+      _debounce!.cancel();
     }
+    _debounce = Timer(const Duration(milliseconds: 200), () {
+      if (!_scrollController.position.isScrollingDown) {
+        return;
+      }
+      context.read<SearchBloc>().add(GetMoreRepos());
+    });
   }
 
   @override
   void dispose() {
+    _debounce?.cancel();
     _scrollController.dispose();
     super.dispose();
   }
@@ -47,60 +57,43 @@ class _SearchPageState extends State<SearchPage> {
                   return ReposListSliver(repos: state.repos);
                 },
               ),
-              BlocBuilder<SearchBloc, SearchState>(
-                builder: (BuildContext context, SearchState state) {
-                  return ErrorSliver(
-                    isVisible: state.noResultsFound,
-                    message: Labels().error.noResultsFound,
-                  );
-                },
-              ),
-              BlocBuilder<SearchBloc, SearchState>(
-                builder: (BuildContext context, SearchState state) {
-                  return ErrorSliver(
-                    isVisible: state.isRequestError,
-                    message: Labels().error.requestError,
-                  );
-                },
-              ),
-              BlocBuilder<SearchBloc, SearchState>(
-                builder: (BuildContext context, SearchState state) {
-                  return ErrorSliver(
-                    isVisible: state.isServerError,
-                    message: Labels().error.serverError,
-                  );
-                },
-              ),
-              BlocBuilder<SearchBloc, SearchState>(
-                builder: (BuildContext context, SearchState state) {
-                  return ErrorSliver(
-                    isVisible: state.isUnknownError,
-                    message: Labels().error.unknownError,
-                  );
-                },
-              ),
             ],
           ),
         ),
         BlocBuilder<SearchBloc, SearchState>(
+          buildWhen: (SearchState previous, SearchState current) {
+            return previous.isLoading != current.isLoading;
+          },
           builder: (BuildContext context, SearchState state) {
             return Visibility(
               visible: state.isLoading,
-              child: Container(
-                color: Colors.black.withOpacity(0.5),
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    color: Colors.black.withOpacity(0.5),
+                  ),
+                  Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ],
               ),
             );
           },
         ),
-        BlocBuilder<SearchBloc, SearchState>(
-          builder: (BuildContext context, SearchState state) {
-            return Visibility(
-              visible: state.isLoading,
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
+        BlocListener(
+          bloc: context.read<SearchBloc>(),
+          listenWhen: (SearchState previous, SearchState current) {
+            return previous.isError != current.isError;
           },
+          listener: (BuildContext context, SearchState state) {
+            if (state.isError) {
+              final snackBar = SnackBar(
+                content: Text(state.errorMessage),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            }
+          },
+          child: const SizedBox.shrink(),
         ),
       ],
     );

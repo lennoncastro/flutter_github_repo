@@ -42,17 +42,13 @@ final class SearchBloc extends Bloc<SearchEvent, SearchState> {
       emit(
         state.copyWith(
           status: SearchStatus.success,
-          repos: repos,
+          repos: [...state.repos, ...repos],
           page: state.page.increment(),
         ),
       );
-    } on NoResultsFound {
-      emit(state.copyWith(status: SearchStatus.noResultsFound));
-    } on RequestError {
-      emit(state.copyWith(status: SearchStatus.requestError));
-    } on ServerError {
-      emit(state.copyWith(status: SearchStatus.serverError));
-    } on UnknownError {
+    } on Exception catch (e) {
+      _handleError(e, emit);
+    } catch (_) {
       emit(state.copyWith(status: SearchStatus.unknownError));
     }
   }
@@ -75,17 +71,25 @@ final class SearchBloc extends Bloc<SearchEvent, SearchState> {
       emit(
         state.copyWith(
           status: SearchStatus.success,
-          repos: repos,
+          repos: [...state.repos, ...repos],
           page: state.page.increment(),
         ),
       );
-    } on NoResultsFound {
+    } on Exception catch (e) {
+      _handleError(e, emit);
+    } catch (_) {
+      emit(state.copyWith(status: SearchStatus.unknownError));
+    }
+  }
+
+  void _handleError(Exception e, Emitter<SearchState> emit) {
+    if (e is NoResultsFound) {
       emit(state.copyWith(status: SearchStatus.noResultsFound));
-    } on RequestError {
+    } else if (e is RequestError) {
       emit(state.copyWith(status: SearchStatus.requestError));
-    } on ServerError {
+    } else if (e is ServerError) {
       emit(state.copyWith(status: SearchStatus.serverError));
-    } on UnknownError {
+    } else {
       emit(state.copyWith(status: SearchStatus.unknownError));
     }
   }
