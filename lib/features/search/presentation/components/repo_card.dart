@@ -3,6 +3,8 @@ import 'package:github_repos/core/theme/src.dart';
 import 'package:github_repos/features/search/data/src.dart';
 import 'package:github_repos/features/search/presentation/components/remote_source_image.dart';
 
+const double _iconSize = 14;
+
 class RepoCard extends StatelessWidget {
   RepoCard({
     required this.repo,
@@ -10,8 +12,6 @@ class RepoCard extends StatelessWidget {
   }) : super(key: key);
 
   final GitHubRepo repo;
-
-  final double _iconSize = 14;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class RepoCard extends StatelessWidget {
             ),
             Row(
               children: <Widget>[
-                Icon(
+                const Icon(
                   Icons.star,
                   size: _iconSize,
                   color: ThemeColors.secondaryColor,
@@ -59,7 +59,7 @@ class RepoCard extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyMediumBold,
                 ),
                 const SizedBox(width: Dimensions.md),
-                Icon(
+                const Icon(
                   Icons.fork_right_sharp,
                   size: _iconSize,
                   color: ThemeColors.secondaryColor,
