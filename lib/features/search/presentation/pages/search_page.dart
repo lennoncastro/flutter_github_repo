@@ -82,12 +82,13 @@ class _SearchPageState extends State<SearchPage> {
             return previous.isError != current.isError;
           },
           listener: (BuildContext context, SearchState state) {
-            if (state.isError) {
-              final snackBar = SnackBar(
-                content: Text(state.errorMessage),
-              );
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            if (!state.isError) {
+              return;
             }
+            final snackBar = SnackBar(
+              content: Text(state.errorMessage),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
           },
           child: const SizedBox.shrink(),
         ),

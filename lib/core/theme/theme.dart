@@ -57,3 +57,13 @@ final ThemeData appTheme = ThemeData(
     textTheme: ButtonTextTheme.primary,
   ),
 );
+
+extension TextThemeX on TextTheme {
+  TextStyle get bodySmallBold {
+    return this.bodyMedium!.copyWith(fontSize: 12, fontWeight: FontWeight.bold);
+  }
+
+  TextStyle get bodyMediumBold {
+    return this.bodyMedium!.copyWith(fontWeight: FontWeight.bold);
+  }
+}
