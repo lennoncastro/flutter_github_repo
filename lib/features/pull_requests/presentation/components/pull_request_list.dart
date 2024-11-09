@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:github_repos/core/theme/src.dart';
-import 'package:github_repos/features/search/data/src.dart';
-import 'package:github_repos/features/search/presentation/components/repo_card.dart';
+import 'package:github_repos/features/pull_requests/data/src.dart';
+import 'package:github_repos/features/pull_requests/presentation/components/src.dart';
 
-class ReposListSliver extends StatelessWidget {
-  ReposListSliver({Key? key, required this.repos}) : super(key: key);
+class PullRequestList extends StatelessWidget {
+  const PullRequestList(
+    this.pullRequests, {
+    super.key,
+  });
 
-  final List<GitHubRepo> repos;
+  final List<PullRequest> pullRequests;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +21,9 @@ class ReposListSliver extends StatelessWidget {
               height: Dimensions.sm,
             );
           }
-          return RepoCard(repo: repos[index]);
+          return PullRequestCard(pullRequests[index]);
         },
-        childCount: repos.length,
+        childCount: pullRequests.length,
       ),
     );
   }

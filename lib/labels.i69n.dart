@@ -37,6 +37,8 @@ class Labels implements i69n.I69nMessageBundle {
   const Labels();
   TextFieldLabels get textField => TextFieldLabels(this);
   ErrorLabels get error => ErrorLabels(this);
+  PullRequestsLabels get pullRequests => PullRequestsLabels(this);
+  GeneralLabels get general => GeneralLabels(this);
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -48,6 +50,10 @@ class Labels implements i69n.I69nMessageBundle {
         return textField;
       case 'error':
         return error;
+      case 'pullRequests':
+        return pullRequests;
+      case 'general':
+        return general;
       default:
         return key;
     }
@@ -57,7 +63,7 @@ class Labels implements i69n.I69nMessageBundle {
 class TextFieldLabels implements i69n.I69nMessageBundle {
   final Labels _parent;
   const TextFieldLabels(this._parent);
-  String get search => "Search...";
+  String get search => "Procure por uma linguagem...";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -95,6 +101,47 @@ class ErrorLabels implements i69n.I69nMessageBundle {
         return serverError;
       case 'unknownError':
         return unknownError;
+      default:
+        return key;
+    }
+  }
+}
+
+class PullRequestsLabels implements i69n.I69nMessageBundle {
+  final Labels _parent;
+  const PullRequestsLabels(this._parent);
+  String opened(int count) => "Abertos $count";
+  String closed(int count) => "Fechados $count";
+  Object operator [](String key) {
+    var index = key.indexOf('.');
+    if (index > 0) {
+      return (this[key.substring(0, index)]
+          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+    }
+    switch (key) {
+      case 'opened':
+        return opened;
+      case 'closed':
+        return closed;
+      default:
+        return key;
+    }
+  }
+}
+
+class GeneralLabels implements i69n.I69nMessageBundle {
+  final Labels _parent;
+  const GeneralLabels(this._parent);
+  String get slash => "/";
+  Object operator [](String key) {
+    var index = key.indexOf('.');
+    if (index > 0) {
+      return (this[key.substring(0, index)]
+          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+    }
+    switch (key) {
+      case 'slash':
+        return slash;
       default:
         return key;
     }

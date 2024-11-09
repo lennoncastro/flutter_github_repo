@@ -1,7 +1,12 @@
 textField:
-  search: Search...
+  search: Procure por uma linguagem...
 error:
   noResultsFound: "Nenhum resultado encontrado"
   requestError: "Erro de requisição"
   serverError: "Erro do servidor"
   unknownError: "Erro desconhecido"
+pullRequests:
+  opened(int count): "Abertos $count"
+  closed(int count): "Fechados $count"
+general:
+  slash: "/"

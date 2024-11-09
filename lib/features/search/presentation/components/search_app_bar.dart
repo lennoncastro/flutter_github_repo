@@ -18,7 +18,6 @@ class SearchAppBar extends StatelessWidget {
       floating: true,
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsetsDirectional.only(
-          start: Dimensions.md,
           bottom: Dimensions.md,
         ),
         title: Container(
