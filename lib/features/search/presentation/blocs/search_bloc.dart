@@ -42,7 +42,7 @@ final class SearchBloc extends Bloc<SearchEvent, SearchState> {
       emit(
         state.copyWith(
           status: SearchStatus.success,
-          repos: [...state.repos, ...repos],
+          repos: repos,
           page: state.page.increment(),
         ),
       );
