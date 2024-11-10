@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 @module
 abstract class NetworkModule {
   final interceptors = List.from([
+    InternetConnectionInterceptor(),
     UrlBaseInterceptor(),
     RequestLogInterceptor(),
   ]);

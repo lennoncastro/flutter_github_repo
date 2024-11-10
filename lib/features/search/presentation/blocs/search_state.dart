@@ -1,23 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:github_repos/core/state/status_enum.dart';
 import 'package:github_repos/features/search/data/src.dart';
 import 'package:github_repos/labels.i69n.dart';
 
 part 'search_state.freezed.dart';
 
-enum SearchStatus {
-  initial,
-  loading,
-  success,
-  requestError,
-  noResultsFound,
-  serverError,
-  unknownError
-}
-
 @freezed
 class SearchState with _$SearchState {
   const factory SearchState({
-    @Default(SearchStatus.initial) SearchStatus status,
+    @Default(Status.initial) Status status,
     @Default(1) int page,
     @Default('') String search,
     @Default(<GitHubRepo>[]) List<GitHubRepo> repos,
@@ -25,27 +16,37 @@ class SearchState with _$SearchState {
 }
 
 extension SearchStateX on SearchState {
-  bool get isLoading => status == SearchStatus.loading;
+  bool get isLoading => status == Status.loading;
   bool get isEmptyList => repos.isEmpty;
-  bool get isSuccess => status == SearchStatus.success;
-  bool get isRequestError => status == SearchStatus.requestError;
-  bool get isServerError => status == SearchStatus.serverError;
-  bool get isUnknownError => status == SearchStatus.unknownError;
-  bool get noResultsFound => status == SearchStatus.noResultsFound;
+  bool get isSuccess => status == Status.success;
+  bool get isRequestError => status == Status.requestError;
+  bool get isServerError => status == Status.serverError;
+  bool get isUnknownError => status == Status.unknownError;
+  bool get noResultsFound => status == Status.noResultsFound;
+  bool get noInternetConnection => status == Status.noInternetConnection;
   bool get isError {
-    return isRequestError || isServerError || isUnknownError || noResultsFound;
+    final possibleErrors = [
+      isRequestError,
+      isServerError,
+      isUnknownError,
+      noResultsFound,
+      noInternetConnection,
+    ];
+    return possibleErrors.any((error) => error);
   }
 
+  Labels get _labels => Labels();
+
   String get errorMessage {
-    if (isRequestError) {
-      return Labels().error.requestError;
-    } else if (isServerError) {
-      return Labels().error.serverError;
-    } else if (isUnknownError) {
-      return Labels().error.unknownError;
-    } else if (noResultsFound) {
-      return Labels().error.noResultsFound;
-    }
-    return '';
+    return switch (status) {
+      Status.requestError => _labels.error.requestError,
+      Status.serverError => _labels.error.serverError,
+      Status.unknownError => _labels.error.unknownError,
+      Status.noResultsFound => _labels.error.noResultsFound,
+      Status.noInternetConnection => _labels.error.noInternetConnection,
+      Status.success => '',
+      Status.initial => '',
+      Status.loading => '',
+    };
   }
 }

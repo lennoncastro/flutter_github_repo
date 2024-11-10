@@ -86,6 +86,7 @@ class ErrorLabels implements i69n.I69nMessageBundle {
   String get requestError => "Erro de requisição";
   String get serverError => "Erro do servidor";
   String get unknownError => "Erro desconhecido";
+  String get noInternetConnection => "Sem conexão a internet";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -101,6 +102,8 @@ class ErrorLabels implements i69n.I69nMessageBundle {
         return serverError;
       case 'unknownError':
         return unknownError;
+      case 'noInternetConnection':
+        return noInternetConnection;
       default:
         return key;
     }

@@ -10,3 +10,5 @@ class RequestError extends ApplicationException {
 }
 
 class ServerError extends ApplicationException {}
+
+class NoInternetException extends ApplicationException {}

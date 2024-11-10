@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_repos/core/error/src.dart';
 import 'package:github_repos/core/extensions/src.dart';
+import 'package:github_repos/core/state/status_enum.dart';
 import 'package:github_repos/features/search/domain/exceptions/search_exceptions.dart';
 import 'package:github_repos/features/search/domain/src.dart';
 import 'package:github_repos/features/search/presentation/blocs/search_event.dart';
@@ -28,7 +29,7 @@ final class SearchBloc extends Bloc<SearchEvent, SearchState> {
       }
       emit(
         state.copyWith(
-          status: SearchStatus.loading,
+          status: Status.loading,
           search: event.name,
           page: 1,
         ),
@@ -41,7 +42,7 @@ final class SearchBloc extends Bloc<SearchEvent, SearchState> {
       );
       emit(
         state.copyWith(
-          status: SearchStatus.success,
+          status: Status.success,
           repos: repos,
           page: state.page.increment(),
         ),
@@ -49,7 +50,7 @@ final class SearchBloc extends Bloc<SearchEvent, SearchState> {
     } on Exception catch (e) {
       _handleError(e, emit);
     } catch (_) {
-      emit(state.copyWith(status: SearchStatus.unknownError));
+      emit(state.copyWith(status: Status.unknownError));
     }
   }
 
@@ -61,7 +62,7 @@ final class SearchBloc extends Bloc<SearchEvent, SearchState> {
       if (state.isLoading || state.noResultsFound) {
         return;
       }
-      emit(state.copyWith(status: SearchStatus.loading));
+      emit(state.copyWith(status: Status.loading));
       final query = 'language:${state.search}';
       final repos = await getGitHubReposByName(
         query: query,
@@ -70,7 +71,7 @@ final class SearchBloc extends Bloc<SearchEvent, SearchState> {
       );
       emit(
         state.copyWith(
-          status: SearchStatus.success,
+          status: Status.success,
           repos: [...state.repos, ...repos],
           page: state.page.increment(),
         ),
@@ -78,19 +79,21 @@ final class SearchBloc extends Bloc<SearchEvent, SearchState> {
     } on Exception catch (e) {
       _handleError(e, emit);
     } catch (_) {
-      emit(state.copyWith(status: SearchStatus.unknownError));
+      emit(state.copyWith(status: Status.unknownError));
     }
   }
 
   void _handleError(Exception e, Emitter<SearchState> emit) {
     if (e is NoResultsFound) {
-      emit(state.copyWith(status: SearchStatus.noResultsFound));
+      emit(state.copyWith(status: Status.noResultsFound));
     } else if (e is RequestError) {
-      emit(state.copyWith(status: SearchStatus.requestError));
+      emit(state.copyWith(status: Status.requestError));
     } else if (e is ServerError) {
-      emit(state.copyWith(status: SearchStatus.serverError));
+      emit(state.copyWith(status: Status.serverError));
+    } else if (e is NoInternetException) {
+      emit(state.copyWith(status: Status.noInternetConnection));
     } else {
-      emit(state.copyWith(status: SearchStatus.unknownError));
+      emit(state.copyWith(status: Status.unknownError));
     }
   }
 }

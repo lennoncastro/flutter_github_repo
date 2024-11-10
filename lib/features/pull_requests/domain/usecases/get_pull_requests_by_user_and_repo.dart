@@ -3,18 +3,22 @@ import 'package:github_repos/features/pull_requests/domain/pull_requests_reposit
 import 'package:injectable/injectable.dart';
 
 @Injectable()
-class GetPullRequestsByUserAndRepo {
-  GetPullRequestsByUserAndRepo(this.pullRequestsRepository);
+final class GetPullRequestsByUserAndRepo {
+  GetPullRequestsByUserAndRepo(this._pullRequestsRepository);
 
-  final PullRequestsRepository pullRequestsRepository;
+  final PullRequestsRepository _pullRequestsRepository;
 
   Future<List<PullRequest>> call({
     required String user,
     required String repo,
   }) async {
-    return pullRequestsRepository.getPullRequestsByUserAndRepo(
-      user: user,
-      repo: repo,
-    );
+    try {
+      return _pullRequestsRepository.getPullRequestsByUserAndRepo(
+        user: user,
+        repo: repo,
+      );
+    } catch (_) {
+      rethrow;
+    }
   }
 }

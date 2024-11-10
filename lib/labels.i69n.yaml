@@ -5,6 +5,7 @@ error:
   requestError: "Erro de requisição"
   serverError: "Erro do servidor"
   unknownError: "Erro desconhecido"
+  noInternetConnection: "Sem conexão a internet"
 pullRequests:
   opened(int count): "Abertos $count"
   closed(int count): "Fechados $count"

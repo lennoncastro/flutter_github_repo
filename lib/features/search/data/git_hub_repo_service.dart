@@ -15,9 +15,9 @@ abstract interface class GitHubRepoRestService {
       _GitHubRepoRestService;
 
   @GET('/search/repositories')
-  Future<GitHubRepoResponse> getRepositories(
-    @Query('q') String query,
-    @Query('page') int page,
-    @Query('sort') String sort,
-  );
+  Future<GitHubRepoResponse> getRepositories({
+    @Query('q') required String query,
+    @Query('page') required int page,
+    @Query('sort') required String sort,
+  });
 }

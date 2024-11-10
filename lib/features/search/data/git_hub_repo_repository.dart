@@ -20,9 +20,9 @@ class GitHubRepoRepositoryImpl implements GitHubRepoRepository {
   }) async {
     try {
       final repositoryResponse = await _service.getRepositories(
-        query,
-        page,
-        sort,
+        query: query,
+        page: page,
+        sort: sort,
       );
       return List<GitHubRepo>.from(repositoryResponse.items);
     } on DioException catch (e) {
