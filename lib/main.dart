@@ -1,9 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:github_repos/app.dart';
 import 'package:github_repos/injection.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  configureDependencies();
-  runApp(const App());
+void main() {
+  runZonedGuarded(() {
+    WidgetsFlutterBinding.ensureInitialized();
+    configureDependencies();
+    runApp(const App());
+  }, catchUnhandledExceptions);
+}
+
+void catchUnhandledExceptions(Object error, StackTrace? stack) {
+  debugPrintStack(stackTrace: stack, label: error.toString());
 }
