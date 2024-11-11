@@ -8,6 +8,9 @@ void main() {
   runZonedGuarded(() {
     WidgetsFlutterBinding.ensureInitialized();
     configureDependencies();
+    FlutterError.onError = (FlutterErrorDetails details) {
+      catchUnhandledExceptions(details.exception, details.stack);
+    };
     runApp(const App());
   }, catchUnhandledExceptions);
 }
