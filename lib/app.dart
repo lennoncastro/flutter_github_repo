@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:github_repos/core/theme/src.dart';
 import 'package:github_repos/routes.dart';
+import 'package:go_router/go_router.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({this.initialLocation = '/', super.key});
+
+  final String initialLocation;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Git Hub Repos',
       theme: appTheme,
-      routerConfig: Routes.router,
+      routerConfig: GoRouter(
+        initialLocation: initialLocation,
+        routes: Routes.r,
+      ),
     );
   }
 }

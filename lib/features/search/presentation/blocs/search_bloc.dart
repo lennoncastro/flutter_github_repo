@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_repos/core/error/src.dart';
 import 'package:github_repos/core/extensions/src.dart';
-import 'package:github_repos/core/state/status_enum.dart';
+import 'package:github_repos/core/state/src.dart';
 import 'package:github_repos/features/search/domain/exceptions/search_exceptions.dart';
 import 'package:github_repos/features/search/domain/src.dart';
 import 'package:github_repos/features/search/presentation/blocs/search_event.dart';

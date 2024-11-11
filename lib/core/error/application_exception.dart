@@ -1,14 +1,18 @@
-sealed class ApplicationException implements Exception {}
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class UnknownError extends ApplicationException {}
+part 'application_exception.freezed.dart';
 
-class RequestError extends ApplicationException {
-  RequestError(this.statusCode, this.statusMessage);
+@freezed
+class ApplicationException with _$ApplicationException implements Exception {
+  const factory ApplicationException.unknown() = UnknownError;
 
-  final int statusCode;
-  final String statusMessage;
+  const factory ApplicationException.noInternetException() =
+      NoInternetException;
+
+  const factory ApplicationException.serverError() = ServerError;
+
+  const factory ApplicationException.requestError(
+    int statusCode,
+    final String statusMessage,
+  ) = RequestError;
 }
-
-class ServerError extends ApplicationException {}
-
-class NoInternetException extends ApplicationException {}

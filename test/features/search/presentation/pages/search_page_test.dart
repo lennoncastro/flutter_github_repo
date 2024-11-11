@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:github_repos/app.dart';
+import 'package:github_repos/core/error/src.dart';
 import 'package:github_repos/core/utils/src.dart';
 import 'package:github_repos/features/search/data/src.dart';
 import 'package:github_repos/features/search/presentation/pages/src.dart';
@@ -24,11 +25,15 @@ void main() {
 
   testWidgets('Should initialize correctly', (WidgetTester tester) async {
     // arrange
-    when(() => _service.getRepositories(any(), any(), any())).thenAnswer((_) async {
-      final json = await loadJson('mocks/get_repos_with_success.json');
+    when(() => _service.getRepositories(
+          query: any(named: 'query'),
+          page: any(named: 'page'),
+          sort: any(named: 'sort'),
+        )).thenAnswer((_) async {
+      final json = await loadJson<Map<String, dynamic>>('mocks/get_repos_with_success.json');
       return GitHubRepoResponse.fromJson(json);
     });
-    await tester.pumpWidget(App());
+    await tester.pumpWidget(App(initialLocation: '/'));
     await tester.pump();
 
     // act
@@ -47,16 +52,18 @@ void main() {
     final response = Response(
       requestOptions: requestOptions,
       statusCode: 400,
-      statusMessage: 'Request cancelled',
     );
     final dioException = DioException(
       response: response,
       requestOptions: requestOptions,
       type: DioExceptionType.badResponse,
-      error: 'Request cancelled',
     );
-    when(() => _service.getRepositories(any(), any(), any())).thenThrow(dioException);
-    await tester.pumpWidget(App());
+    when(() => _service.getRepositories(
+          query: any(named: 'query'),
+          page: any(named: 'page'),
+          sort: any(named: 'sort'),
+        )).thenThrow(dioException);
+    await tester.pumpWidget(App(initialLocation: '/'));
     await tester.pump();
 
     // act
@@ -75,16 +82,18 @@ void main() {
     final response = Response(
       requestOptions: requestOptions,
       statusCode: 501,
-      statusMessage: 'Server error',
     );
     final dioException = DioException(
       response: response,
       requestOptions: requestOptions,
       type: DioExceptionType.badResponse,
-      error: 'Server error',
     );
-    when(() => _service.getRepositories(any(), any(), any())).thenThrow(dioException);
-    await tester.pumpWidget(App());
+    when(() => _service.getRepositories(
+          query: any(named: 'query'),
+          page: any(named: 'page'),
+          sort: any(named: 'sort'),
+        )).thenThrow(dioException);
+    await tester.pumpWidget(App(initialLocation: '/'));
     await tester.pump();
 
     // act
@@ -103,16 +112,18 @@ void main() {
     final response = Response(
       requestOptions: requestOptions,
       statusCode: 400,
-      statusMessage: 'Unknown error',
     );
     final dioException = DioException(
       response: response,
       requestOptions: requestOptions,
       type: DioExceptionType.unknown,
-      error: 'Unknown error',
     );
-    when(() => _service.getRepositories(any(), any(), any())).thenThrow(dioException);
-    await tester.pumpWidget(App());
+    when(() => _service.getRepositories(
+          query: any(named: 'query'),
+          page: any(named: 'page'),
+          sort: any(named: 'sort'),
+        )).thenThrow(dioException);
+    await tester.pumpWidget(App(initialLocation: '/'));
     await tester.pump();
 
     // act
@@ -132,16 +143,18 @@ void main() {
     final response = Response(
       requestOptions: requestOptions,
       statusCode: 422,
-      statusMessage: 'Request cancelled',
     );
     final dioException = DioException(
       response: response,
       requestOptions: requestOptions,
       type: DioExceptionType.badResponse,
-      error: 'Request cancelled',
     );
-    when(() => _service.getRepositories(any(), any(), any())).thenThrow(dioException);
-    await tester.pumpWidget(App());
+    when(() => _service.getRepositories(
+          query: any(named: 'query'),
+          page: any(named: 'page'),
+          sort: any(named: 'sort'),
+        )).thenThrow(dioException);
+    await tester.pumpWidget(App(initialLocation: '/'));
     await tester.pump();
 
     // act
@@ -153,5 +166,34 @@ void main() {
     // assert
     expect(find.byType(SearchPage), findsOneWidget);
     expect(find.text('Nenhum resultado encontrado'), findsOneWidget);
+  });
+
+  testWidgets('Should display no internet connection error',
+      (WidgetTester tester) async {
+    // arrange
+    final response = Response(requestOptions: requestOptions);
+    final dioException = DioException(
+      response: response,
+      requestOptions: requestOptions,
+      type: DioExceptionType.badResponse,
+      error: NoInternetException(),
+    );
+    when(() => _service.getRepositories(
+          query: any(named: 'query'),
+          page: any(named: 'page'),
+          sort: any(named: 'sort'),
+        )).thenThrow(dioException);
+    await tester.pumpWidget(App(initialLocation: '/'));
+    await tester.pump();
+
+    // act
+    await tester.enterText(find.byKey(const Key('search_text_field')), 'java');
+    await tester.pump();
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    await tester.pump();
+
+    // assert
+    expect(find.byType(SearchPage), findsOneWidget);
+    expect(find.text('Sem conexão a internet'), findsOneWidget);
   });
 }

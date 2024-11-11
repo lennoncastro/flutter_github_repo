@@ -69,6 +69,22 @@ class _PullRequestsPageState extends State<PullRequestsPage> {
             );
           },
         ),
+        BlocListener(
+          bloc: context.read<PullRequestsBloc>(),
+          listenWhen: (PullRequestsState previous, PullRequestsState current) {
+            return previous.isError != current.isError;
+          },
+          listener: (BuildContext context, PullRequestsState state) {
+            if (!state.isError) {
+              return;
+            }
+            final snackBar = SnackBar(
+              content: Text(state.errorMessage),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          },
+          child: const SizedBox.shrink(),
+        ),
       ],
     );
   }

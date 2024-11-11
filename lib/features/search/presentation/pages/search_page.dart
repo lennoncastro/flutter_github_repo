@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:github_repos/core/extensions/scroll_position_extension.dart';
+import 'package:github_repos/core/extensions/src.dart';
 import 'package:github_repos/features/search/presentation/blocs/src.dart';
 import 'package:github_repos/features/search/presentation/components/src.dart';
 

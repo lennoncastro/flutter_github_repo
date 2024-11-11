@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:github_repos/core/state/status_enum.dart';
+import 'package:github_repos/core/state/src.dart';
 import 'package:github_repos/features/pull_requests/data/models/pull_request_model.dart';
 import 'package:github_repos/labels.i69n.dart';
 
@@ -32,8 +32,17 @@ extension PullRequestsStateX on PullRequestsState {
   bool get isServerError => status == Status.serverError;
   bool get isUnknownError => status == Status.unknownError;
   bool get noResultsFound => status == Status.noResultsFound;
+  bool get noInternetConnection => status == Status.noInternetConnection;
+
   bool get isError {
-    return isRequestError || isServerError || isUnknownError || noResultsFound;
+    final possibleErrors = [
+      isRequestError,
+      isServerError,
+      isUnknownError,
+      noResultsFound,
+      noInternetConnection,
+    ];
+    return possibleErrors.any((error) => error);
   }
 
   Labels get _labels => Labels();

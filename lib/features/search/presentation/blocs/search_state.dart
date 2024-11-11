@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:github_repos/core/state/status_enum.dart';
+import 'package:github_repos/core/state/src.dart';
 import 'package:github_repos/features/search/data/src.dart';
 import 'package:github_repos/labels.i69n.dart';
 

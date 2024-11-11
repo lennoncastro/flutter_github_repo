@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:github_repos/core/error/error_extesion.dart';
 import 'package:github_repos/core/error/src.dart';
 import 'package:github_repos/features/search/data/git_hub_repo_service.dart';
 import 'package:github_repos/features/search/data/models/git_hub_repo_model.dart';
