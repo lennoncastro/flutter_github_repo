@@ -1,5 +1,7 @@
+app:
+  title: "Git Hub Repos"
 textField:
-  search: Procure por uma linguagem...
+  search: "Procure por uma linguagem..."
 error:
   noResultsFound: "Nenhum resultado encontrado"
   requestError: "Erro de requisição"

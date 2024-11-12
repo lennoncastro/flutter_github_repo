@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:github_repos/core/extensions/src.dart';
 import 'package:github_repos/core/theme/src.dart';
-import 'package:github_repos/labels.i69n.dart';
 
 class SearchAppBar extends StatelessWidget {
   SearchAppBar({required this.onEditingComplete, Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class SearchAppBar extends StatelessWidget {
               onEditingComplete(searchController.text);
             },
             decoration: InputDecoration(
-              hintText: Labels().textField.search,
+              hintText: label.textField.search,
               filled: true,
               prefixIcon: Icon(Icons.search),
             ),

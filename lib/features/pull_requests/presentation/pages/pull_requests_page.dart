@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_repos/core/components/src.dart';
+import 'package:github_repos/core/extensions/src.dart';
 import 'package:github_repos/features/pull_requests/presentation/blocs/src.dart';
 import 'package:github_repos/features/pull_requests/presentation/components/src.dart';
+import 'package:github_repos/features/pull_requests/presentation/pages/pull_requests_args.dart';
 
 final class PullRequestsPage extends StatefulWidget {
-  const PullRequestsPage({
+  const PullRequestsPage._({
     super.key,
     required this.user,
     required this.repo,
   });
+
+  PullRequestsPage.fromArgs(PullRequestsPageArgs args)
+      : this._(user: args.user, repo: args.repo);
 
   final String user;
 
@@ -78,10 +83,7 @@ class _PullRequestsPageState extends State<PullRequestsPage> {
             if (!state.isError) {
               return;
             }
-            final snackBar = SnackBar(
-              content: Text(state.errorMessage),
-            );
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            context.showSnackBar(state.errorMessage);
           },
           child: const SizedBox.shrink(),
         ),

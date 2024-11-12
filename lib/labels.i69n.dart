@@ -35,6 +35,7 @@ String _cardinal(int count,
 
 class Labels implements i69n.I69nMessageBundle {
   const Labels();
+  AppLabels get app => AppLabels(this);
   TextFieldLabels get textField => TextFieldLabels(this);
   ErrorLabels get error => ErrorLabels(this);
   PullRequestsLabels get pullRequests => PullRequestsLabels(this);
@@ -46,6 +47,8 @@ class Labels implements i69n.I69nMessageBundle {
           as i69n.I69nMessageBundle)[key.substring(index + 1)];
     }
     switch (key) {
+      case 'app':
+        return app;
       case 'textField':
         return textField;
       case 'error':
@@ -54,6 +57,25 @@ class Labels implements i69n.I69nMessageBundle {
         return pullRequests;
       case 'general':
         return general;
+      default:
+        return key;
+    }
+  }
+}
+
+class AppLabels implements i69n.I69nMessageBundle {
+  final Labels _parent;
+  const AppLabels(this._parent);
+  String get title => "Git Hub Repos";
+  Object operator [](String key) {
+    var index = key.indexOf('.');
+    if (index > 0) {
+      return (this[key.substring(0, index)]
+          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+    }
+    switch (key) {
+      case 'title':
+        return title;
       default:
         return key;
     }

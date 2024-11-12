@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_repos/features/pull_requests/presentation/blocs/src.dart';
+import 'package:github_repos/features/pull_requests/presentation/pages/pull_requests_args.dart';
 import 'package:github_repos/features/pull_requests/presentation/pages/src.dart';
 import 'package:github_repos/features/search/presentation/blocs/src.dart';
 import 'package:github_repos/features/search/presentation/pages/src.dart';
@@ -24,13 +25,12 @@ mixin Routes {
           name: 'pull-requests',
           path: '/pull-requests/:user/:repo',
           builder: (_, GoRouterState state) {
-            final user = state.pathParameters['user'] ?? '';
-            final repo = state.pathParameters['repo'] ?? '';
+            final args = PullRequestsPageArgs.fromJson(state.pathParameters);
             return BlocProvider<PullRequestsBloc>(
               create: (_) {
                 return getIt<PullRequestsBloc>();
               },
-              child: PullRequestsPage(user: user, repo: repo),
+              child: PullRequestsPage.fromArgs(args),
             );
           },
         ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:github_repos/core/components/src.dart';
+import 'package:github_repos/core/extensions/src.dart';
 import 'package:github_repos/core/theme/src.dart';
 import 'package:github_repos/features/search/data/src.dart';
-import 'package:go_router/go_router.dart';
 
 const double _iconSize = 14;
 
@@ -14,21 +14,22 @@ class RepoCard extends StatelessWidget {
 
   final GitHubRepo repo;
 
+  Map<String, String> get pathParameters {
+    return <String, String>{
+      'user': repo.owner.login,
+      'repo': repo.name,
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
       key: Key(repo.id.toString()),
       child: ListTile(
         onTap: () {
-          final pathParameters = <String, String>{
-            'user': repo.owner.login,
-            'repo': repo.name
-          };
-          context.go(
-            context.namedLocation(
-              'pull-requests',
-              pathParameters: pathParameters,
-            ),
+          context.goRouteNamed(
+            'pull-requests',
+            pathParameters: pathParameters,
           );
         },
         leading: SizedBox(

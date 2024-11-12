@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:github_repos/core/extensions/src.dart';
 import 'package:github_repos/core/theme/src.dart';
-import 'package:github_repos/labels.i69n.dart';
 
 class PullRequestInfo extends StatelessWidget {
   const PullRequestInfo({
@@ -20,9 +20,9 @@ class PullRequestInfo extends StatelessWidget {
       sliver: SliverToBoxAdapter(
         child: Row(
           children: <Widget>[
-            Text(Labels().pullRequests.opened(open)),
-            Text(Labels().general.slash),
-            Text(Labels().pullRequests.closed(closed)),
+            Text(label.pullRequests.opened(open)),
+            Text(label.general.slash),
+            Text(label.pullRequests.closed(closed)),
           ],
         ),
       ),

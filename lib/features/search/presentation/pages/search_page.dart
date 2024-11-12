@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:github_repos/core/components/src.dart';
 import 'package:github_repos/core/extensions/src.dart';
 import 'package:github_repos/features/search/presentation/blocs/src.dart';
 import 'package:github_repos/features/search/presentation/components/src.dart';
@@ -67,12 +68,7 @@ class _SearchPageState extends State<SearchPage> {
           builder: (BuildContext context, SearchState state) {
             return Visibility(
               visible: state.isLoading,
-              child: Container(
-                color: Colors.black.withOpacity(0.5),
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
+              child: BackgroundOverlay(),
             );
           },
         ),
@@ -85,10 +81,7 @@ class _SearchPageState extends State<SearchPage> {
             if (!state.isError) {
               return;
             }
-            final snackBar = SnackBar(
-              content: Text(state.errorMessage),
-            );
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            context.showSnackBar(state.errorMessage);
           },
           child: const SizedBox.shrink(),
         ),

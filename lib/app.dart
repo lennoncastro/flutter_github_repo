@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:github_repos/core/extensions/src.dart';
 import 'package:github_repos/core/theme/src.dart';
 import 'package:github_repos/routes.dart';
 import 'package:go_router/go_router.dart';
@@ -11,7 +12,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Git Hub Repos',
+      title: label.app.title,
       theme: appTheme,
       routerConfig: GoRouter(
         initialLocation: initialLocation,

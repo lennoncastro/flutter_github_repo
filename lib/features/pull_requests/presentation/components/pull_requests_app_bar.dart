@@ -9,6 +9,9 @@ class PullRequestAppBar extends StatelessWidget {
   });
 
   final String repo;
+
+  final double _expandedHeight = 128;
+
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -18,7 +21,7 @@ class PullRequestAppBar extends StatelessWidget {
           Icons.chevron_left,
         ),
       ),
-      expandedHeight: 128,
+      expandedHeight: _expandedHeight,
       floating: true,
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsetsDirectional.only(
